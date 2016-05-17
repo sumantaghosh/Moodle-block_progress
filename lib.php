@@ -1550,7 +1550,7 @@ function block_progress_bar($modules, $config, $events, $userid, $instance, $att
     // Add the percentage below the progress bar.
     if ($showpercentage == 1 && !$simple) {
         $progress = block_progress_percentage($events, $attempts);
-        $percentagecontent = get_string('progress', 'block_progress').': '.$progress.'%';
+        $percentagecontent = get_string('progress', 'block_progress').': '.$progress.' of '.count($events);
         $percentageoptions = array('class' => 'progressPercentage');
         $content .= HTML_WRITER::tag('div', $percentagecontent, $percentageoptions);
     }
@@ -1632,9 +1632,9 @@ function block_progress_percentage($events, $attempts) {
         }
     }
 
-    $progressvalue = $attemptcount == 0 ? 0 : $attemptcount / count($events);
+    $progressvalue = $attemptcount;
 
-    return (int)round($progressvalue * 100);
+    return (int)round($progressvalue * 1);
 }
 
 /**
